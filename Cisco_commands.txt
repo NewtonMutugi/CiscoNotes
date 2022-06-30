@@ -1,0 +1,18 @@
+****** Cisco commands *******
+
+enable - change to priviledged mode
+configure terminal - enter configuration mode for the switch
+	-> hostname "name of the switch without quuotes"
+	-> line console 0 - configurations to secure the switch from people connecting console cables
+	-> line vty 0 15 - configuring to secure people connecting remotely
+		-> password USERPASSWORD - puts the new password
+		-> login - finish up and saves the new console mode
+	-> end - exits console mode and returns to priviledged mode
+	-> enable secret PASSWORD - protect the priviledged mode
+	-> service password-encryption
+	-> interface vlan 1 - enter vlan mode to configure accessibility of the switch
+	*** Configure switch Ip ****
+	-> ip address 192.168.0.1 255.255.255.0 - set ip address for the switch
+	-> no shutdown - change the switch state to up so that it can be accessed or ping
+exit - exits entire session
+show running-config - shows all the configurations
