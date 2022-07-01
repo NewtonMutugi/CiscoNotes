@@ -14,5 +14,6 @@ configure terminal - enter configuration mode for the switch
 	*** Configure switch Ip ****
 	-> ip address 192.168.0.1 255.255.255.0 - set ip address for the switch
 	-> no shutdown - change the switch state to up so that it can be accessed or ping
+	-> banner motd # - puts a default message(motd is message of the day) which warns illegal accessors of the network
 exit - exits entire session
 show running-config - shows all the configurations
