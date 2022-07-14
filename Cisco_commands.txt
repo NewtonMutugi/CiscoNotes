@@ -11,9 +11,21 @@ configure terminal - enter configuration mode for the switch
 	-> enable secret PASSWORD - protect the priviledged mode
 	-> service password-encryption
 	-> interface vlan 1 - enter vlan mode to configure accessibility of the switch
-	*** Configure switch Ip ****
-	-> ip address 192.168.0.1 255.255.255.0 - set ip address for the switch
-	-> no shutdown - change the switch state to up so that it can be accessed or ping
+		*** Configure switch Ip ****
+		-> ip address 192.168.0.1 255.255.255.0 - set ip address for the switch
+		-> no shutdown - change the switch state to up so that it can be accessed or ping
 	-> banner motd # - puts a default message(motd is message of the day) which warns illegal accessors of the network
+	-> ip default-gateway 192.168.1.1
+
+	*** Configure SSH ***
+	-> ip domain-name netacad.pka - Configure the domain name to be netacad.pka
+	-> crypto key generate rsa - Secure keys are needed to encrypt the data. Generate the RSA keys using a 1024 key length
+	-> username administrator secret cisco - Create an administrator user with cisco as the secret password.
+	-> line vty 0 15 - Configure the VTY lines to check the local username database for login credentials and to only allow SSH for remote access. Remove the existing vty line password.
+		-> login local
+		-> transport input ssh
+		-> no password cisco
+	-> reload - reboots entire switch
 exit - exits entire session
 show running-config - shows all the configurations
+copy running-config startup-config -   Save the current configuration so that any mistakes you might make can be reversed by toggling the power for the switch 
